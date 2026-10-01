@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenteSana - Hábitos Saludables</title>
+    <link rel="stylesheet" href="styleportada.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Google Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-brain logo-icon"></i>
+            <span class="logo-text" data-i18n="logoText"><span class="blue">Mente</span><span class="green">Sana</span></span>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btn-es">ES</button>
+            <button class="lang-btn" id="btn-en">EN</button>
+        </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL -->
+    <div class="hero-main">
+        <main class="hero-container">
+            
+            <!-- Columna Izquierda: Texto e Interacción -->
+            <div class="hero-content">
+                <h1 class="main-title" data-i18n="mainTitle"><span class="blue">Mente</span><span class="green">Sana</span></h1>
+                <h2 class="subtitle" data-i18n="subtitle">Hábitos saludables para una mejor vida universitaria</h2>
+                <p class="description" data-i18n="description">
+                    Explora, aprende y pon en práctica hábitos que mejoran tu bienestar físico, mental, académico y digital.
+                </p>
+                
+                <!-- Botón CTA -->
+                <a href="seccionmenu.html" class="cta-button" id="btn-comenzar">
+                    <span data-i18n="btnComenzar">Comenzar</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Columna Derecha: Imagen + Reproductor de Audio -->
+            <div class="hero-media-container">
+                
+                <!-- Contenedor de la Imagen -->
+                <div class="image-wrapper">
+                    <img id="hero-img" src="Imagenes/sasint-students-1807505.jpg" alt="Estudiante universitaria trabajando en laptop">
+                </div>
+
+                <!-- Reproductor de Audio -->
+                <div class="audio-player-wrapper">
+                    <div class="audio-info">
+                        <i class="fa-solid fa-volume-high audio-icon"></i>
+                        <span data-i18n="audioLabel">Escuchar descripción en audio</span>
+                    </div>
+                    
+                    <audio id="hero-audio" controls preload="metadata">
+                        <source src="Audios/Audio 1.mp3" type="audio/mp3">
+                        Tu navegador no soporta la reproducción de audio.
+                    </audio>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Fondo de ondas verdes -->
+    <div class="wave-bg">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#e8f8f5" fill-opacity="0.8" d="M0,192L80,181.3C160,171,320,149,480,165.3C640,181,800,235,960,240C1120,245,1280,203,1360,181.3L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+            <path fill="#d1f2eb" fill-opacity="0.5" d="M0,224L120,213.3C240,203,480,181,720,197.3C960,213,1200,267,1320,288L1440,309L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <script src="scriptportada.js"></script>
+</body>
+</html>

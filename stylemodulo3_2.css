@@ -1,0 +1,402 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f7fcfb;
+    color: #1a365d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* COLORES Y MARCA */
+.blue { color: #0b2545; }
+.green { color: #3bb273; }
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e1f0ec;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Botón Menú Hamburguesa (Oculto por defecto en PC/Tablet) */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: #1a365d;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    color: #3bb273;
+    font-size: 26px;
+}
+
+.lang-switch {
+    background-color: #eef4f8;
+    padding: 4px;
+    border-radius: 30px;
+    display: flex;
+    gap: 2px;
+}
+
+.lang-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #7a8a9e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    background-color: #3bb273;
+    color: #ffffff;
+}
+
+/* APP CONTAINER */
+.app-container {
+    display: flex;
+    flex: 1;
+}
+
+/* SIDEBAR / MENÚ LATERAL */
+.sidebar {
+    width: 260px;
+    background-color: #dffdff;
+    border-right: 1px solid #e1f0ec;
+    padding: 20px 15px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1a365d;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.nav-item small {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: #c2e1cb;
+}
+
+.nav-item.active {
+    background-color: #c9f1ea;
+    color: #3bb273;
+}
+
+.nav-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Íconos de colores para el sidebar */
+.icon-purple { color: #7c69ef; }
+.icon-green { color: #3bb273; }
+.icon-orange { color: #f99f38; }
+.icon-teal { color: #22a2c3; }
+.icon-pink { color: #f86d90; }
+.icon-blue { color: #2563eb; }
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TÍTULO DE LECCIÓN */
+.lesson-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #c86300;
+    margin-bottom: 20px;
+}
+
+/* REPRODUCTOR DE AUDIO */
+.audio-player-wrapper {
+    background-color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid #e1f0ec;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 420px;
+}
+
+.audio-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #3bb273;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.audio-player-wrapper audio {
+    width: 100%;
+    height: 34px;
+}
+
+/* SECCIÓN SUPERIOR HERO (TEXTO IZQUIERDA / VIDEO DERECHA) */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.hero-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-description {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #334155;
+    font-weight: 500;
+}
+
+.hero-video-box {
+    width: 100%;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    background-color: #000000;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* SECCIÓN INFERIOR: OPCIONES SALUDABLES (6 ÍTEMS) */
+.benefits-container {
+    background-color: #ffecda;
+    border-radius: 20px;
+    padding: 25px 30px;
+    margin-bottom: 35px;
+}
+
+.benefits-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f2b48;
+    margin-bottom: 25px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.benefit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 20px 15px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.benefit-icon-wrapper {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.benefit-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.benefit-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f2b48;
+}
+
+.benefit-subtext {
+    font-size: 13px;
+    font-weight: 400;
+    color: #475569;
+    line-height: 1.3;
+}
+
+/* BOTONES DE NAVEGACIÓN INFERIORES */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-prev {
+    background-color: #eef4f8;
+    color: #4a5568;
+}
+
+.btn-prev:hover {
+    background-color: #e2e8f0;
+    color: #1a202c;
+}
+
+.btn-next {
+    background-color: #3bb273;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 178, 115, 0.3);
+}
+
+.btn-next:hover {
+    background-color: #2e965f;
+    transform: translateX(3px);
+}
+
+/* OVERLAY PARA MÓVIL */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* RESPONSIVO: TABLET Y PANTALLAS INTERMEDIAS (601px a 900px) */
+@media (max-width: 900px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* RESPONSIVO: MÓVILES PEQUEÑOS (600px o menos) -> MENÚ HAMBURGUESA */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 260px;
+        z-index: 1002;
+        transform: translateX(-100%);
+        overflow-y: auto;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}

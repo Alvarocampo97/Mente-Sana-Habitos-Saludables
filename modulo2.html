@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenteSana - Módulo 2: Actividad física</title>
+    <link rel="stylesheet" href="stylemodulo2.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Google Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado / Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fa-solid fa-brain logo-icon"></i>
+                <span class="logo-text" data-i18n="logoText"><span class="blue">Mente</span><span class="green">Sana</span></span>
+            </div>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btn-es">ES</button>
+            <button class="lang-btn" id="btn-en">EN</button>
+        </div>
+    </header>
+
+    <!-- Overlay para cerrar el menú en móviles -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Layout Principal -->
+    <div class="app-container">
+        
+        <!-- Sidebar / Menú Lateral -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="seccionmenu.html" class="nav-item">
+                    <i class="fa-solid fa-house nav-icon"></i>
+                    <span data-i18n="navHome">Inicio</span>
+                </a>
+                <a href="modulo1.html" class="nav-item">
+                    <i class="fa-solid fa-moon nav-icon icon-purple"></i>
+                    <div>
+                        <small data-i18n="mod1Small">Módulo 1</small>
+                        <span data-i18n="mod1Title">Sueño</span>
+                    </div>
+                </a>
+                <a href="modulo2.html" class="nav-item active">
+                    <i class="fa-solid fa-person-running nav-icon icon-green"></i>
+                    <div>
+                        <small data-i18n="mod2Small">Módulo 2</small>
+                        <span data-i18n="mod2Title">Actividad física</span>
+                    </div>
+                </a>
+                <a href="modulo3.html" class="nav-item">
+                    <i class="fa-solid fa-apple-whole nav-icon icon-orange"></i>
+                    <div>
+                        <small data-i18n="mod3Small">Módulo 3</small>
+                        <span data-i18n="mod3Title">Alimentación</span>
+                    </div>
+                </a>
+                <a href="modulo4.html" class="nav-item">
+                    <i class="fa-solid fa-brain nav-icon icon-teal"></i>
+                    <div>
+                        <small data-i18n="mod4Small">Módulo 4</small>
+                        <span data-i18n="mod4Title">Bienestar emocional</span>
+                    </div>
+                </a>
+                <a href="modulo5.html" class="nav-item">
+                    <i class="fa-solid fa-mobile-screen-button nav-icon icon-pink"></i>
+                    <div>
+                        <small data-i18n="mod5Small">Módulo 5</small>
+                        <span data-i18n="mod5Title">Hábitos digitales</span>
+                    </div>
+                </a>
+                <a href="actividad.html" class="nav-item">
+                    <i class="fa-solid fa-clipboard-question nav-icon icon-blue"></i>
+                    <span data-i18n="navQuiz">Actividad de aprendizaje</span>
+                </a>
+                <a href="progreso.html" class="nav-item">
+                    <i class="fa-solid fa-chart-simple nav-icon icon-blue"></i>
+                    <span data-i18n="navProgress">Mi progreso</span>
+                </a>
+                <a href="creditos.html" class="nav-item">
+                    <i class="fa-solid fa-book nav-icon icon-blue"></i>
+                    <span data-i18n="navCredits">Créditos</span>
+                </a>                
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            
+            <!-- Banner Encabezado del Módulo 2 -->
+            <div class="module-banner">
+                <div class="banner-text">
+                    <div class="banner-title-group">
+                        <i class="fa-solid fa-person-running banner-icon"></i>
+                        <div>
+                            <span class="banner-subtitle" data-i18n="bannerModNum">Módulo 2</span>
+                            <h1 class="banner-title" data-i18n="bannerModTitle">Actividad física</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-image-container">
+                    <img src="Imagenes/young-sportive-couple-doing-yoga-fitness-people-summer-park.jpg" alt="Persona realizando actividad física" class="banner-img">
+                </div>
+            </div>
+
+            <!-- Reproductor de Audio -->
+            <div class="audio-player-wrapper">
+                <div class="audio-info">
+                    <i class="fa-solid fa-volume-high audio-icon"></i>
+                    <span data-i18n="audioLabel">Escuchar descripción en audio</span>
+                </div>
+                <audio id="hero-audio" controls preload="metadata">
+                    <source src="Audios/Audio 6.mp3" type="audio/mp3">
+                    Tu navegador no soporta la reproducción de audio.
+                </audio>
+            </div>
+
+            <!-- Lista de Subsecciones -->
+            <div class="submodules-list">
+                
+                <!-- Submódulo 2.1 -->
+                <div class="submodule-card" onclick="location.href='modulo2_1.html'">
+                    <div class="submodule-info">
+                        <h2 class="submodule-title"><span class="submodule-num">2.1.</span> <span data-i18n="sub1Title">Beneficios de la actividad física</span></h2>
+                        <p class="submodule-desc" data-i18n="sub1Desc">La actividad física regular contribuye al cuidado de la salud, mejora la condición física y favorece una composición corporal saludable.</p>
+                    </div>
+                    <button class="action-circle-btn" aria-label="Ir a sección 2.1">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Submódulo 2.2 -->
+                <div class="submodule-card" onclick="location.href='modulo2_2.html'">
+                    <div class="submodule-info">
+                        <h2 class="submodule-title"><span class="submodule-num">2.2.</span> <span data-i18n="sub2Title">Estrategias para mantenerse activo durante la jornada académica</span></h2>
+                        <p class="submodule-desc" data-i18n="sub2Desc">Conoce estrategias que te ayudarán a mantenerte activo.</p>
+                    </div>
+                    <button class="action-circle-btn" aria-label="Ir a sección 2.2">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Botones de Navegación Inferiores -->
+            <div class="navigation-buttons">
+                <a href="modulo1_2.html" class="nav-btn btn-prev">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Anterior</span>
+                </a>
+                <a href="modulo2_1.html" class="nav-btn btn-next">
+                    <span data-i18n="btnNext">Siguiente</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="scriptmodulo2.js"></script>
+    <script src="global-tracker.js"></script>
+</body>
+</html>

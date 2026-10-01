@@ -1,0 +1,455 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f7fcfb;
+    color: #1a365d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* COLORES Y MARCA */
+.blue { color: #0b2545; }
+.green { color: #3bb273; }
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e1f0ec;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* BOTÓN MENÚ HAMBURGUESA */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: #0b2545;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: #3bb273;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    color: #3bb273;
+    font-size: 26px;
+}
+
+.lang-switch {
+    background-color: #eef4f8;
+    padding: 4px;
+    border-radius: 30px;
+    display: flex;
+    gap: 2px;
+}
+
+.lang-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #7a8a9e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    background-color: #3bb273;
+    color: #ffffff;
+}
+
+/* APP CONTAINER */
+.app-container {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* OVERLAY DE MENÚ MÓVIL */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 800;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* SIDEBAR / MENÚ LATERAL */
+.sidebar {
+    width: 260px;
+    background-color: #dffdff;
+    border-right: 1px solid #e1f0ec;
+    padding: 20px 15px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1a365d;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.nav-item small {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: #c2e1cb;
+}
+
+.nav-item.active {
+    background-color: #c9f1ea;
+    color: #3bb273;
+}
+
+.nav-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Íconos de colores para el sidebar */
+.icon-purple { color: #7c69ef; }
+.icon-green { color: #3bb273; }
+.icon-orange { color: #f99f38; }
+.icon-teal { color: #22a2c3; }
+.icon-pink { color: #f86d90; }
+.icon-blue { color: #2563eb; }
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0b2545;
+    margin-bottom: 8px;
+}
+
+.welcome-subtitle {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 20px;
+}
+
+/* REPRODUCTOR DE AUDIO */
+.audio-player-wrapper {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 1px solid #e1f0ec;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 450px;
+    width: 100%;
+}
+
+.audio-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #3bb273;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.audio-player-wrapper audio {
+    width: 100%;
+    height: 36px;
+}
+
+/* GRILLA DE TARJETAS */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.module-card {
+    border-radius: 20px;
+    padding: 35px 20px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 180px;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* COLORES DE TARJETAS */
+.card-purple { background-color: #7c69ef; }
+.card-green { background-color: #3bb273; }
+.card-orange { background-color: #f99f38; }
+.card-teal { background-color: #22a2c3; }
+.card-pink { background-color: #f86d90; }
+
+/* ESTILOS PARA LA SECCIÓN DE CRÉDITOS Y REFERENCIAS */
+.credits-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #e1f0ec;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    margin-bottom: 40px;
+}
+
+.credits-section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0b2545;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.credits-section-title i {
+    color: #3bb273;
+}
+
+.references-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Sangría Francesa (Hanging Indent) para referencias bibliográficas APA */
+.references-list li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #334155;
+    padding-left: 36px;
+    text-indent: -36px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.references-list a {
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.references-list a:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
+}
+
+/* BOTONES DE NAVEGACIÓN INFERIORES */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-prev {
+    background-color: #eef4f8;
+    color: #4a5568;
+}
+
+.btn-prev:hover {
+    background-color: #e2e8f0;
+    color: #1a202c;
+}
+
+.btn-next {
+    background-color: #3bb273;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 178, 115, 0.3);
+}
+
+.btn-next:hover {
+    background-color: #2e965f;
+    transform: translateX(3px);
+}
+
+/* ADAPTABILIDAD RESPONSIVA Y MENÚ HAMBURGUESA */
+@media (max-width: 1024px) {
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el botón hamburguesa */
+    }
+
+    /* Transformar el sidebar en menú desplegable lateral móvil */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 280px;
+        z-index: 900;
+        transform: translateX(-100%); /* Oculto por defecto fuera de pantalla */
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        padding-top: 80px; /* Deja espacio superior */
+    }
+
+    /* Clase que despliega el menú en móviles */
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+    }
+
+    .welcome-subtitle {
+        font-size: 15px;
+    }
+
+    .credits-container {
+        padding: 20px;
+    }
+
+    .references-list li {
+        font-size: 14px;
+        padding-left: 20px;
+        text-indent: -20px;
+    }
+
+    .navigation-buttons {
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 18px;
+    }
+
+    .logo-icon {
+        font-size: 22px;
+    }
+
+    .lang-btn {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenteSana - 3.2 Opciones saludables para los estudiantes universitarios</title>
+    <link rel="stylesheet" href="stylemodulo3_2.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Google Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado / Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fa-solid fa-brain logo-icon"></i>
+                <span class="logo-text" data-i18n="logoText"><span class="blue">Mente</span><span class="green">Sana</span></span>
+            </div>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btn-es">ES</button>
+            <button class="lang-btn" id="btn-en">EN</button>
+        </div>
+    </header>
+
+    <!-- Overlay para cerrar el menú en móvil -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Layout Principal -->
+    <div class="app-container">
+        
+        <!-- Sidebar / Menú Lateral -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="seccionmenu.html" class="nav-item">
+                    <i class="fa-solid fa-house nav-icon"></i>
+                    <span data-i18n="navHome">Inicio</span>
+                </a>
+                <a href="modulo1.html" class="nav-item">
+                    <i class="fa-solid fa-moon nav-icon icon-purple"></i>
+                    <div>
+                        <small data-i18n="mod1Small">Módulo 1</small>
+                        <span data-i18n="mod1Title">Sueño</span>
+                    </div>
+                </a>
+                <a href="modulo2.html" class="nav-item">
+                    <i class="fa-solid fa-person-running nav-icon icon-green"></i>
+                    <div>
+                        <small data-i18n="mod2Small">Módulo 2</small>
+                        <span data-i18n="mod2Title">Actividad física</span>
+                    </div>
+                </a>
+                <a href="modulo3.html" class="nav-item active">
+                    <i class="fa-solid fa-apple-whole nav-icon icon-orange"></i>
+                    <div>
+                        <small data-i18n="mod3Small">Módulo 3</small>
+                        <span data-i18n="mod3Title">Alimentación</span>
+                    </div>
+                </a>
+                <a href="modulo4.html" class="nav-item">
+                    <i class="fa-solid fa-brain nav-icon icon-teal"></i>
+                    <div>
+                        <small data-i18n="mod4Small">Módulo 4</small>
+                        <span data-i18n="mod4Title">Bienestar emocional</span>
+                    </div>
+                </a>
+                <a href="modulo5.html" class="nav-item">
+                    <i class="fa-solid fa-mobile-screen-button nav-icon icon-pink"></i>
+                    <div>
+                        <small data-i18n="mod5Small">Módulo 5</small>
+                        <span data-i18n="mod5Title">Hábitos digitales</span>
+                    </div>
+                </a>
+                <a href="actividad.html" class="nav-item">
+                    <i class="fa-solid fa-clipboard-question nav-icon icon-blue"></i>
+                    <span data-i18n="navQuiz">Actividad de aprendizaje</span>
+                </a>
+                <a href="progreso.html" class="nav-item">
+                    <i class="fa-solid fa-chart-simple nav-icon icon-blue"></i>
+                    <span data-i18n="navProgress">Mi progreso</span>
+                </a>
+                <a href="creditos.html" class="nav-item">
+                    <i class="fa-solid fa-book nav-icon icon-blue"></i>
+                    <span data-i18n="navCredits">Créditos</span>
+                </a>                
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            
+            <!-- Título de la Lección -->
+            <h1 class="lesson-title" data-i18n="lessonTitle">3.2 Opciones saludables para los estudiantes universitarios</h1>
+
+            <!-- Reproductor de Audio -->
+            <div class="audio-player-wrapper">
+                <div class="audio-info">
+                    <i class="fa-solid fa-volume-high audio-icon"></i>
+                    <span data-i18n="audioLabel">Escuchar descripción en audio</span>
+                </div>
+                <audio id="hero-audio" controls preload="metadata">
+                    <source src="Audios/Audio 11.mp3" type="audio/mp3">
+                    Tu navegador no soporta la reproducción de audio.
+                </audio>
+            </div>
+
+            <!-- Sección Superior: Texto a la Izquierda + Video en Loop a la Derecha -->
+            <div class="hero-section">
+                <div class="hero-text-content">
+                    <p class="main-description" data-i18n="mainDesc">
+                        La vida universitaria puede traer poco tiempo, horarios cambiantes y comidas fuera de casa. ¡Pequeñas decisiones pueden marcar la diferencia!
+                    </p>
+                </div>
+
+                <div class="hero-video-box">
+                    <video class="hero-video" autoplay loop muted playsinline>
+                        <source src="Videos/6318023_People_Human_1280x720.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Sección Inferior: Opciones Saludables (6 Tarjetas) -->
+            <div class="benefits-container">
+                <h2 class="benefits-title" data-i18n="benefitsTitle">🎒 ¿Qué puedes elegir?</h2>
+                
+                <div class="benefits-grid">
+                    
+                    <!-- Opción 1 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper icon-orange">
+                            <i class="fa-solid fa-bananas">🍌</i>
+                        </div>
+                        <div class="benefit-text-wrapper">
+                            <h3 class="benefit-label" data-i18n="p1Title">Para la merienda</h3>
+                            <p class="benefit-subtext" data-i18n="p1Desc">Fruta, yogur o frutos secos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opción 2 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper icon-teal">
+                            <i class="fa-solid fa-utensils">🥪</i>
+                        </div>
+                        <div class="benefit-text-wrapper">
+                            <h3 class="benefit-label" data-i18n="p2Title">Para comer fuera</h3>
+                            <p class="benefit-subtext" data-i18n="p2Desc">Prefiere preparaciones con verduras y una fuente de proteína.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opción 3 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper icon-blue">
+                            <i class="fa-solid fa-droplet">💧</i>
+                        </div>
+                        <div class="benefit-text-wrapper">
+                            <h3 class="benefit-label" data-i18n="p3Title">Para beber</h3>
+                            <p class="benefit-subtext" data-i18n="p3Desc">Elige agua con mayor frecuencia.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opción 4 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper icon-green">
+                            <i class="fa-solid fa-bowl-rice">🥗</i>
+                        </div>
+                        <div class="benefit-text-wrapper">
+                            <h3 class="benefit-label" data-i18n="p4Title">En tus comidas</h3>
+                            <p class="benefit-subtext" data-i18n="p4Desc">Incluye frutas y verduras.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opción 5 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper icon-pink">
+                            <i class="fa-solid fa-triangle-exclamation">🍟</i>
+                        </div>
+                        <div class="benefit-text-wrapper">
+                            <h3 class="benefit-label" data-i18n="p5Title">Ultraprocesados</h3>
+                            <p class="benefit-subtext" data-i18n="p5Desc">Consúmelos con menor frecuencia.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opción 6 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon-wrapper icon-purple">
+                            <i class="fa-solid fa-calendar-days">📅</i>
+                        </div>
+                        <div class="benefit-text-wrapper">
+                            <h3 class="benefit-label" data-i18n="p6Title">Organízate</h3>
+                            <p class="benefit-subtext" data-i18n="p6Desc">Planifica algunas comidas o meriendas.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Botones de Navegación Inferiores -->
+            <div class="navigation-buttons">
+                <a href="modulo3_1.html" class="nav-btn btn-prev">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Anterior</span>
+                </a>
+                <a href="modulo4.html" class="nav-btn btn-next">
+                    <span data-i18n="btnNext">Siguiente</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="scriptmodulo3_2.js"></script>
+    <script src="global-tracker.js"></script>
+</body>
+</html>

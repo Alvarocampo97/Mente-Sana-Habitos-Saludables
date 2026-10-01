@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenteSana - 2.2 Estrategias para mantenerse activo durante la jornada académica.</title>
+    <link rel="stylesheet" href="stylemodulo2_2.css">
+    <!-- Font Awesome para íconos del menú y sistema -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Google Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado / Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fa-solid fa-brain logo-icon"></i>
+                <span class="logo-text" data-i18n="logoText"><span class="blue">Mente</span><span class="green">Sana</span></span>
+            </div>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btn-es">ES</button>
+            <button class="lang-btn" id="btn-en">EN</button>
+        </div>
+    </header>
+
+    <!-- Overlay para cerrar menú en móviles -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Layout Principal -->
+    <div class="app-container">
+
+        <!-- Sidebar / Menú Lateral -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="seccionmenu.html" class="nav-item">
+                    <i class="fa-solid fa-house nav-icon"></i>
+                    <span data-i18n="navHome">Inicio</span>
+                </a>
+                <a href="modulo1.html" class="nav-item">
+                    <i class="fa-solid fa-moon nav-icon icon-purple"></i>
+                    <div>
+                        <small data-i18n="mod1Small">Módulo 1</small>
+                        <span data-i18n="mod1Title">Sueño</span>
+                    </div>
+                </a>
+                <a href="modulo2.html" class="nav-item active">
+                    <i class="fa-solid fa-person-running nav-icon icon-green"></i>
+                    <div>
+                        <small data-i18n="mod2Small">Módulo 2</small>
+                        <span data-i18n="mod2Title">Actividad física</span>
+                    </div>
+                </a>
+                <a href="modulo3.html" class="nav-item">
+                    <i class="fa-solid fa-apple-whole nav-icon icon-orange"></i>
+                    <div>
+                        <small data-i18n="mod3Small">Módulo 3</small>
+                        <span data-i18n="mod3Title">Alimentación</span>
+                    </div>
+                </a>
+                <a href="modulo4.html" class="nav-item">
+                    <i class="fa-solid fa-brain nav-icon icon-teal"></i>
+                    <div>
+                        <small data-i18n="mod4Small">Módulo 4</small>
+                        <span data-i18n="mod4Title">Bienestar emocional</span>
+                    </div>
+                </a>
+                <a href="modulo5.html" class="nav-item">
+                    <i class="fa-solid fa-mobile-screen-button nav-icon icon-pink"></i>
+                    <div>
+                        <small data-i18n="mod5Small">Módulo 5</small>
+                        <span data-i18n="mod5Title">Hábitos digitales</span>
+                    </div>
+                </a>
+                <a href="actividad.html" class="nav-item">
+                    <i class="fa-solid fa-clipboard-question nav-icon icon-blue"></i>
+                    <span data-i18n="navQuiz">Actividad de aprendizaje</span>
+                </a>
+                <a href="progreso.html" class="nav-item">
+                    <i class="fa-solid fa-chart-simple nav-icon icon-blue"></i>
+                    <span data-i18n="navProgress">Mi progreso</span>
+                </a>
+                <a href="creditos.html" class="nav-item">
+                    <i class="fa-solid fa-book nav-icon icon-blue"></i>
+                    <span data-i18n="navCredits">Créditos</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+
+            <!-- Título del Módulo 2_2 -->
+            <h1 class="lesson-title" data-i18n="lessonTitle">2.2 Hábitos de Actividad Física Recomendados</h1>
+
+            <!-- Reproductor de Audio -->
+            <div class="audio-player-wrapper">
+                <div class="audio-info">
+                    <i class="fa-solid fa-volume-high audio-icon"></i>
+                    <span data-i18n="audioLabel">Escuchar descripción en audio</span>
+                </div>
+                <audio id="hero-audio" controls preload="metadata">
+                    <source src="Audios/Audio 8.mp3" type="audio/mp3">
+                    Tu navegador no soporta la reproducción de audio.
+                </audio>
+            </div>
+
+            <!-- Grilla de Tarjetas Interactivas (7 Tarjetas sin íconos internos) -->
+            <div class="cards-grid">
+
+                <!-- Tarjeta 1: Verde -->
+                <div class="interactive-card card-green" id="card-1">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card1Tag">Estrategia 1</h3>
+                            <p class="card-summary" data-i18n="card1Front">Planificar la actividad física.</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card1Back">
+                                    Organiza durante la semana momentos destinados a realizar actividad física, teniendo en cuenta el tiempo disponible y las actividades académicas (Galmes-Panades & Vidal-Conti, 2020).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Azul Pálido -->
+                <div class="interactive-card card-blue" id="card-2">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card2Tag">Estrategia 2</h3>
+                            <p class="card-summary" data-i18n="card2Front">Establecer metas realistas</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card2Back">
+                                    Define objetivos alcanzables de acuerdo con las necesidades, posibilidades y preferencias personales (Galmes-Panades & Vidal-Conti, 2020).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Celeste -->
+                <div class="interactive-card card-cyan" id="card-3">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card3Tag">Estrategia 3</h3>
+                            <p class="card-summary" data-i18n="card3Front">Registrar la actividad realizada.</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card3Back">
+                                    Utiliza aplicaciones, relojes o pulseras de actividad, fotografías u otros medios que permitan llevar un seguimiento del ejercicio realizado (Galmes-Panades & Vidal-Conti, 2020).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Naranja Pálido -->
+                <div class="interactive-card card-orange" id="card-4">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card4Tag">Estrategia 4</h3>
+                            <p class="card-summary" data-i18n="card4Front">Variar las actividades.</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card4Back">
+                                    Combina diferentes tipos de ejercicio, como actividades aeróbicas, ejercicios de fuerza y ejercicios de flexibilidad, para evitar la monotonía y trabajar diferentes capacidades físicas (Perea-Caballero et al., 2019).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Púrpura -->
+                <div class="interactive-card card-purple" id="card-5">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card5Tag">Estrategia 5</h3>
+                            <p class="card-summary" data-i18n="card5Front">Reducir el tiempo sedentario.</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card5Back">
+                                    Procura no permanecer durante períodos prolongados realizando actividades sedentarias, especialmente durante las jornadas de estudio (Perea-Caballero et al., 2019).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Rosa/Coral -->
+                <div class="interactive-card card-pink" id="card-6">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card6Tag">Estrategia 6</h3>
+                            <p class="card-summary" data-i18n="card6Front">Realizar actividades con compañeros.</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card6Back">
+                                    Comparte algunas actividades físicas con otros estudiantes puede favorecer la motivación y facilitar la continuidad de la práctica (Galmes-Panades & Vidal-Conti, 2020).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 7: Verde Lima/Teal -->
+                <div class="interactive-card card-teal" id="card-7">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3 class="card-subtitle" data-i18n="card7Tag">Estrategia 7</h3>
+                            <p class="card-summary" data-i18n="card7Front">Revisar los avances.</p>
+                            <span class="card-hint" data-i18n="cardHint">Haz clic para ver más</span>
+                        </div>
+                        <div class="card-back">
+                            <button class="close-card-btn" aria-label="Cerrar">&times;</button>
+                            <div class="card-back-content">
+                                <p class="card-description" data-i18n="card7Back">
+                                   Observa periódicamente el progreso y ajustar las metas cuando sea necesario ayuda a mantener la motivación y favorecer la continuidad de la actividad física (Galmes-Panades & Vidal-Conti, 2020).
+                                </p>
+                            </div>
+                            <div class="card-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botones de Navegación Inferiores -->
+            <div class="navigation-buttons">
+                <a href="modulo2_1.html" class="nav-btn btn-prev">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Anterior</span>
+                </a>
+                <a href="modulo3.html" class="nav-btn btn-next">
+                    <span data-i18n="btnNext">Siguiente</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="scriptmodulo2_2.js"></script>
+    <script src="global-tracker.js"></script>
+</body>
+</html>

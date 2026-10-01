@@ -1,0 +1,459 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f7fcfb;
+    color: #1a365d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* COLORES Y MARCA */
+.blue { color: #0b2545; }
+.green { color: #3bb273; }
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e1f0ec;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: #1a365d;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    color: #3bb273;
+    font-size: 26px;
+}
+
+.lang-switch {
+    background-color: #eef4f8;
+    padding: 4px;
+    border-radius: 30px;
+    display: flex;
+    gap: 2px;
+}
+
+.lang-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #7a8a9e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    background-color: #3bb273;
+    color: #ffffff;
+}
+
+/* APP CONTAINER */
+.app-container {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+/* OVERLAY PARA CERRAR EL MENÚ EN MÓVILES */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* SIDEBAR / MENÚ LATERAL */
+.sidebar {
+    width: 260px;
+    background-color: #dffdff;
+    border-right: 1px solid #e1f0ec;
+    padding: 20px 15px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1a365d;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.nav-item small {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: #c2e1cb;
+}
+
+.nav-item.active {
+    background-color: #c9f1ea;
+    color: #3bb273;
+}
+
+.nav-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Íconos de colores para el sidebar */
+.icon-purple { color: #7c69ef; }
+.icon-green { color: #3bb273; }
+.icon-orange { color: #f99f38; }
+.icon-teal { color: #22a2c3; }
+.icon-pink { color: #f86d90; }
+.icon-blue { color: #2563eb; }
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* BANNER DE MÓDULO 3 (COLOR NARANJA) */
+.module-banner {
+    background: linear-gradient(135deg, #f99f38 0%, #e67e22 100%);
+    border-radius: 20px;
+    padding: 30px 40px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(249, 159, 56, 0.25);
+}
+
+.banner-title-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.banner-icon {
+    font-size: 52px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 18px;
+    border-radius: 50%;
+    color: #ffffff;
+}
+
+.banner-subtitle {
+    font-size: 22px;
+    font-weight: 600;
+    display: block;
+    opacity: 0.9;
+}
+
+.banner-title {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.banner-image-container {
+    width: 280px;
+    height: 160px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* REPRODUCTOR DE AUDIO */
+.audio-player-wrapper {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 1px solid #e1f0ec;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 450px;
+}
+
+.audio-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #3bb273;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.audio-player-wrapper audio {
+    width: 100%;
+    height: 36px;
+}
+
+/* SUBMÓDULOS / TARJETAS DE CONTENIDO */
+.submodules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.submodule-card {
+    background-color: #ffffff;
+    border: 1.5px solid #fde2c4;
+    border-radius: 18px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.submodule-card:hover {
+    border-color: #f99f38;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(249, 159, 56, 0.15);
+}
+
+.submodule-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c86300; /* Título adaptado a la gama cálida/naranja */
+    margin-bottom: 10px;
+}
+
+.submodule-num {
+    color: #f99f38; /* Números en color naranja */
+    margin-right: 5px;
+}
+
+.submodule-desc {
+    font-size: 14px;
+    color: #475569;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* BOTÓN DE FLECHA DE SUBMÓDULOS EN NARANJA */
+.action-circle-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: #ffedd5; /* Fondo suave naranja */
+    border: none;
+    color: #ea580c; /* Flecha naranja */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.submodule-card:hover .action-circle-btn {
+    background-color: #f99f38;
+    color: #ffffff;
+}
+
+/* BOTONES DE NAVEGACIÓN INFERIORES */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-prev {
+    background-color: #eef4f8;
+    color: #4a5568;
+}
+
+.btn-prev:hover {
+    background-color: #e2e8f0;
+    color: #1a202c;
+}
+
+.btn-next {
+    background-color: #3bb273;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 178, 115, 0.3);
+}
+
+.btn-next:hover {
+    background-color: #2e965f;
+    transform: translateX(3px);
+}
+
+/* MEDIA QUERIES PARA ADAPTABILIDAD */
+
+/* TABLETS Y DISPOSITIVOS MEDIANOS: El menú sigue al lado izquierdo normalmente */
+@media (max-width: 992px) {
+    .main-content {
+        padding: 30px;
+    }
+
+    .module-banner {
+        padding: 25px 30px;
+    }
+
+    .banner-title {
+        font-size: 28px;
+    }
+
+    .banner-subtitle {
+        font-size: 18px;
+    }
+
+    .banner-image-container {
+        width: 220px;
+        height: 140px;
+    }
+}
+
+/* MÓVILES PEQUEÑOS (<= 768px): Activa menú hamburguesa */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 999;
+        transform: translateX(-100%);
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .module-banner {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 25px 20px;
+    }
+
+    .banner-title-group {
+        flex-direction: column;
+    }
+
+    .banner-image-container {
+        width: 100%;
+        height: 180px;
+    }
+
+    .audio-player-wrapper {
+        max-width: 100%;
+    }
+
+    .submodule-card {
+        padding: 20px;
+    }
+
+    .navigation-buttons {
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+}

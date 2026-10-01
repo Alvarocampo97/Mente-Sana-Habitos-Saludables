@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenteSana - Créditos</title>
+    <link rel="stylesheet" href="stylecreditos.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Google Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Encabezado / Navbar -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <!-- Botón Menú Hamburguesa para móviles -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fa-solid fa-brain logo-icon"></i>
+                <span class="logo-text" data-i18n="logoText"><span class="blue">Mente</span><span class="green">Sana</span></span>
+            </div>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btn-es">ES</button>
+            <button class="lang-btn" id="btn-en">EN</button>
+        </div>
+    </header>
+
+    <!-- Overlay oscuro de fondo en pantallas pequeñas -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Layout Principal -->
+    <div class="app-container">
+        
+        <!-- Sidebar / Menú Lateral -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="seccionmenu.html" class="nav-item">
+                    <i class="fa-solid fa-house nav-icon"></i>
+                    <span data-i18n="navHome">Inicio</span>
+                </a>
+                <a href="modulo1.html" class="nav-item">
+                    <i class="fa-solid fa-moon nav-icon icon-purple"></i>
+                    <div>
+                        <small data-i18n="mod1Small">Módulo 1</small>
+                        <span data-i18n="mod1Title">Sueño</span>
+                    </div>
+                </a>
+                <a href="modulo2.html" class="nav-item">
+                    <i class="fa-solid fa-person-running nav-icon icon-green"></i>
+                    <div>
+                        <small data-i18n="mod2Small">Módulo 2</small>
+                        <span data-i18n="mod2Title">Actividad física</span>
+                    </div>
+                </a>
+                <a href="modulo3.html" class="nav-item">
+                    <i class="fa-solid fa-apple-whole nav-icon icon-orange"></i>
+                    <div>
+                        <small data-i18n="mod3Small">Módulo 3</small>
+                        <span data-i18n="mod3Title">Alimentación</span>
+                    </div>
+                </a>
+                <a href="modulo4.html" class="nav-item">
+                    <i class="fa-solid fa-brain nav-icon icon-teal"></i>
+                    <div>
+                        <small data-i18n="mod4Small">Módulo 4</small>
+                        <span data-i18n="mod4Title">Bienestar emocional</span>
+                    </div>
+                </a>
+                <a href="modulo5.html" class="nav-item">
+                    <i class="fa-solid fa-mobile-screen-button nav-icon icon-pink"></i>
+                    <div>
+                        <small data-i18n="mod5Small">Módulo 5</small>
+                        <span data-i18n="mod5Title">Hábitos digitales</span>
+                    </div>
+                </a>
+                <a href="actividad.html" class="nav-item">
+                    <i class="fa-solid fa-clipboard-question nav-icon icon-blue"></i>
+                    <span data-i18n="navQuiz">Actividad de aprendizaje</span>
+                </a>
+                <a href="progreso.html" class="nav-item">
+                    <i class="fa-solid fa-chart-simple nav-icon icon-blue"></i>
+                    <span data-i18n="navProgress">Mi progreso</span>
+                </a>
+                <a href="creditos.html" class="nav-item active">
+                    <i class="fa-solid fa-book nav-icon icon-blue"></i>
+                    <span data-i18n="navCredits">Créditos</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal (Créditos / Referencias) -->
+        <main class="main-content">
+            <div class="welcome-header">
+                <h1 class="welcome-title" data-i18n="creditsTitle">Créditos y Referencias</h1>
+                <p class="welcome-subtitle" data-i18n="creditsSubtitle">Consulta las fuentes bibliográficas y los recursos multimedia utilizados.</p>
+                
+                <!-- Reproductor de Audio -->
+                <div class="audio-player-wrapper">
+                    <div class="audio-info">
+                        <i class="fa-solid fa-volume-high audio-icon"></i>
+                        <span data-i18n="audioLabel">Escuchar descripción en audio</span>
+                    </div>
+                    <audio id="hero-audio" controls preload="metadata">
+                        <source src="Audios/Audio 20.mp3" type="audio/mp3">
+                        Tu navegador no soporta la reproducción de audio.
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Sección de Referencias Bibliográficas -->
+            <section class="credits-container">
+                <h2 class="credits-section-title"><i class="fa-solid fa-bookmark"></i> <span data-i18n="refHeader">Referencias Bibliográficas</span></h2>
+                <ul class="references-list">
+                    <li>
+                        Em0rix. (2026, 8 de julio). <em>Belleza, naturaleza, sueño, tarde</em> [Fotografía]. Pixabay. https://pixabay.com/es/photos/belleza-naturaleza-sue%C3%B1o-tarde-10368641/
+                    </li>
+                    <li>
+                        Google. (2026). <em>Imagen generada mediante inteligencia artificial sobre importancia del sueño</em> [Imagen generada por IA]. Gemini.
+                    </li>
+                    <li>
+                        Google. (2026). <em>Imagen generada mediante inteligencia artificial sobre alimentación saludable</em> [Imagen generada por IA]. Gemini.
+                    </li>
+                    <li>
+                        Google. (2026). <em>Imagen generada mediante inteligencia artificial sobre bienestar emocional</em> [Imagen generada por IA]. Gemini.
+                    </li>
+                    <li>
+                        Google. (2026). <em>Imagen generada mediante inteligencia artificial sobre bienestar digital</em> [Imagen generada por IA]. Gemini.
+                    </li>
+                    <li>
+                        Magnific. (s. f.). <em>Estudiantes colaboran en un portátil en una biblioteca</em> [Video]. Magnific. https://www.magnific.com/es/video-gratis/estudiantes-colaboran-portatil-biblioteca_5973816
+                    </li>
+                    <li>
+                        Magnific. (s. f.). <em>Familia preparando la mesa</em> [Video]. Magnific. https://www.magnific.com/es/video-gratis/familia-preparando-mesa_2890223
+                    </li>
+                    <li>
+                        Magnific. (s. f.). <em>Primer plano de la naturaleza muerta de los exámenes difíciles</em> [Fotografía]. Magnific. https://www.magnific.com/es/foto-gratis/primer-plano-naturaleza-muerta-examenes-dificiles_23668672.htm
+                    </li>
+                    <li>
+                        Prostooleh. (s. f.). <em>Joven pareja deportiva haciendo yoga fitness. Personas en un parque de verano</em> [Fotografía]. Magnific. https://www.magnific.com/es/foto-gratis/joven-pareja-deportiva-haciendo-yoga-fitness-personas-parque-verano_10165126.htm
+                    </li>
+                    <li>
+                        Pvproductions. (s. f.). <em>Almuerzo en la mesa con alimentos orgánicos saludables. Vista superior</em> [Fotografía]. Magnific. https://www.magnific.com/es/foto-gratis/almuerzo-mesa-alimentos-organicos-saludables-vista-superior_9045950.htm
+                    </li>
+                    <li>
+                        RainMeditateHub. (2025, 23 de julio). <em>Mujeres, ejercicio, entrenamiento de gimnasio</em> [Video]. Pixabay. https://pixabay.com/es/videos/mujeres-ejercicio-293079/
+                    </li>
+                    <li>
+                        Sasint. (2016, 11 de noviembre). <em>Estudiantes, ordenadores, laptops</em> [Fotografía]. Pixabay. https://pixabay.com/es/photos/estudiantes-ordenadores-laptops-1807505/
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Botones de Navegación Inferiores -->
+            <div class="navigation-buttons">
+                <a href="progreso.html" class="nav-btn btn-prev">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="btnPrev">Anterior</span>
+                </a>
+                <a href="seccionmenu.html" class="nav-btn btn-next">
+                    <span data-i18n="btnHomeNav">Inicio</span> 
+                </a>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="scriptcretidos.js"></script>
+    <script src="global-tracker.js"></script>
+</body>
+</html>
