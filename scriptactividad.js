@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------------------------------------------
     const translations = {
         es: {
+            pageTitle: "MenteSana - Actividad de aprendizaje",
             logoText: '<span class="blue">Mente</span><span class="green">Sana</span>',
             navHome: 'Inicio',
             mod1Small: 'Módulo 1',
@@ -85,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
             feedbackIncorrect: 'Incorrecto. Intenta de nuevo haciendo clic en Reintentar.'
         },
         en: {
-            logoText: '<span class="blue">Mente</span><span class="green">Sana</span>',
+            pageTitle: "HealthyMind - Learning Activity",
+            logoText: '<span class="blue">Healthy</span><span class="green">Mind</span>',
             navHome: 'Home',
             mod1Small: 'Module 1',
             mod1Title: 'Sleep',
@@ -174,6 +176,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setLanguage(lang) {
         currentLang = lang;
+        document.documentElement.lang = lang;
+
+        // ACTUALIZAR EL TÍTULO DE LA PESTAÑA (HEAD)
+        if (translations[lang] && translations[lang].pageTitle) {
+            document.title = translations[lang].pageTitle;
+        }
 
         if (btnEs && btnEn) {
             btnEs.classList.toggle("active", lang === "es");
@@ -202,7 +210,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+
+        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
+        localStorage.setItem('preferredLang', lang);
     }
+
+    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    setLanguage(savedLang);
 
     if (btnEs) btnEs.addEventListener("click", () => setLanguage("es"));
     if (btnEn) btnEn.addEventListener("click", () => setLanguage("en"));

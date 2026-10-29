@@ -83,30 +83,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función de actualización de idioma
+    // Función de actualización de idioma y persistencia
     function changeLanguage(lang) {
         document.documentElement.lang = lang;
         document.title = translations[lang].pageTitle;
 
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
-            if (translations[lang][key]) {
+            if (translations[lang] && translations[lang][key]) {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Sincronizar el estado visual de los botones
+        if (btnEs && btnEn) {
+            if (lang === 'es') {
+                btnEs.classList.add('active');
+                btnEn.classList.remove('active');
+            } else {
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+            }
+        }
+
+        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
+        localStorage.setItem('preferredLang', lang);
     }
+
+    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    changeLanguage(savedLang);
 
     // Eventos del conmutador ES/EN
     if (btnEs && btnEn) {
         btnEs.addEventListener('click', () => {
-            btnEs.classList.add('active');
-            btnEn.classList.remove('active');
             changeLanguage('es');
         });
 
         btnEn.addEventListener('click', () => {
-            btnEn.classList.add('active');
-            btnEs.classList.remove('active');
             changeLanguage('en');
         });
     }

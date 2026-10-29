@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Recorrer elementos con data-i18n
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
-            if (translations[lang][key]) {
+            if (translations[lang] && translations[lang][key]) {
                 element.innerHTML = translations[lang][key];
             }
         });
@@ -47,31 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
             heroImg.alt = translations[lang].imgAlt;
         }
 
-        // Sincronizar el estado visual de los botones
-        if (lang === 'es') {
-            btnEs.classList.add('active');
-            btnEn.classList.remove('active');
-        } else {
-            btnEn.classList.add('active');
-            btnEs.classList.remove('active');
+        // Sincronizar el estado visual de los botones (si existen en esta sección)
+        if (btnEs && btnEn) {
+            if (lang === 'es') {
+                btnEs.classList.add('active');
+                btnEn.classList.remove('active');
+            } else {
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+            }
         }
 
         // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
         localStorage.setItem('preferredLang', lang);
     }
 
-    // 1. COMPROBAR SI YA HABÍA UN IDIOMA GUARDADO AL CARGAR LA PÁGINA
+    // APLICAR IDIOMA GUARDADO AL CARGAR CADA SECCIÓN
+    // Si no hay nada guardado, por defecto toma 'es'
     const savedLang = localStorage.getItem('preferredLang') || 'es';
     changeLanguage(savedLang);
 
-    // Eventos de selección de idioma
-    btnEs.addEventListener('click', () => {
-        changeLanguage('es');
-    });
+    // Eventos de selección de idioma (validando que los botones existan en la vista actual)
+    if (btnEs) {
+        btnEs.addEventListener('click', () => {
+            changeLanguage('es');
+        });
+    }
 
-    btnEn.addEventListener('click', () => {
-        changeLanguage('en');
-    });
+    if (btnEn) {
+        btnEn.addEventListener('click', () => {
+            changeLanguage('en');
+        });
+    }
 
     if (btnComenzar) {
         btnComenzar.addEventListener('click', () => {

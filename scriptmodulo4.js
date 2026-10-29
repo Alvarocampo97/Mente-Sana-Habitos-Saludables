@@ -76,31 +76,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función de actualización de idioma
-    function changeLanguage(lang) {
+    // Función de actualización de idioma y guardado en localStorage
+    function changeLanguage(lang, save = true) {
         document.documentElement.lang = lang;
-        document.title = translations[lang].pageTitle;
+        if (translations[lang]) {
+            document.title = translations[lang].pageTitle;
 
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                element.innerHTML = translations[lang][key];
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Actualizar clases visuales de los botones de forma segura
+            if (btnEs && btnEn) {
+                if (lang === 'es') {
+                    btnEs.classList.add('active');
+                    btnEn.classList.remove('active');
+                } else {
+                    btnEn.classList.add('active');
+                    btnEs.classList.remove('active');
+                }
             }
+
+            // Guardar preferencia usando la clave unificada 'preferredLang'
+            if (save) {
+                localStorage.setItem('preferredLang', lang);
+            }
+        }
+    }
+
+    // 1. Cargar la preferencia de idioma guardada al iniciar la página
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    changeLanguage(savedLang, false);
+
+    // Eventos del conmutador ES/EN
+    if (btnEs) {
+        btnEs.addEventListener('click', () => {
+            changeLanguage('es', true);
         });
     }
 
-    // Eventos del conmutador ES/EN
-    btnEs.addEventListener('click', () => {
-        btnEs.classList.add('active');
-        btnEn.classList.remove('active');
-        changeLanguage('es');
-    });
-
-    btnEn.addEventListener('click', () => {
-        btnEn.classList.add('active');
-        btnEs.classList.remove('active');
-        changeLanguage('en');
-    });
+    if (btnEn) {
+        btnEn.addEventListener('click', () => {
+            changeLanguage('en', true);
+        });
+    }
 });
 
 // Para guardar visita de página en las demás vistas HTML:
@@ -111,7 +133,7 @@ if (currentPage && !visitedPages.includes(currentPage)) {
     localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
 }
 
-// Para guardar una interacción completada (ej. responder una pregunta o dar clic a un botón):
+// Para guardar una interacción completada:
 let completedInteractions = JSON.parse(localStorage.getItem('completedInteractions')) || [];
 if (!completedInteractions.includes('interaction_id')) {
     completedInteractions.push('interaction_id');

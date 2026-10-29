@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             pageTitle: "HealthyMind - 2.2 Strategies to stay active during the academic day.",
-            logoText: '<span class="blue">Mente</span><span class="green">Sana</span>',
+            logoText: '<span class="blue">Healthy</span><span class="green">Mind</span>',
             navHome: "Home",
             mod1Small: "Module 1",
             mod1Title: "Sleep",
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función de actualización de idioma
+    // Función de actualización de idioma y persistencia
     function changeLanguage(lang) {
         document.documentElement.lang = lang;
         document.title = translations[lang].pageTitle;
@@ -143,21 +143,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Sincronizar el estado visual de los botones
+        if (btnEs && btnEn) {
+            if (lang === 'es') {
+                btnEs.classList.add('active');
+                btnEn.classList.remove('active');
+            } else {
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+            }
+        }
+
+        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
+        localStorage.setItem('preferredLang', lang);
     }
+
+    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    changeLanguage(savedLang);
 
     // Eventos del conmutador ES/EN
     if (btnEs) {
         btnEs.addEventListener('click', () => {
-            btnEs.classList.add('active');
-            if (btnEn) btnEn.classList.remove('active');
             changeLanguage('es');
         });
     }
 
     if (btnEn) {
         btnEn.addEventListener('click', () => {
-            btnEn.classList.add('active');
-            if (btnEs) btnEs.classList.remove('active');
             changeLanguage('en');
         });
     }

@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLang = 'es';
 
     function updateProgressUI() {
+        // Se mantiene la lectura de visitedPages desde sessionStorage tal como lo maneja tu lógica original
         const visitedPages = JSON.parse(sessionStorage.getItem('visitedPages')) || [];
 
         const pagesCount = Math.min(visitedPages.length, TOTAL_PAGES);
@@ -160,21 +161,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Sincronizar el estado visual de los botones de forma segura
+        if (btnEs && btnEn) {
+            if (lang === 'es') {
+                btnEs.classList.add('active');
+                btnEn.classList.remove('active');
+            } else {
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+            }
+        }
+
+        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
+        localStorage.setItem('preferredLang', lang);
+
         updateProgressUI();
     }
 
+    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    changeLanguage(savedLang);
+
     if (btnEs) {
         btnEs.addEventListener('click', () => {
-            btnEs.classList.add('active');
-            if (btnEn) btnEn.classList.remove('active');
             changeLanguage('es');
         });
     }
 
     if (btnEn) {
         btnEn.addEventListener('click', () => {
-            btnEn.classList.add('active');
-            if (btnEs) btnEs.classList.remove('active');
             changeLanguage('en');
         });
     }

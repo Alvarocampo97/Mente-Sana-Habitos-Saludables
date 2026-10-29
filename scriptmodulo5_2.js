@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             pageTitle: "HealthyMind - 5.2 Building a Healthy Routine",
-            logoText: '<span class="blue">Mente</span><span class="green">Sana</span>',
+            logoText: '<span class="blue">Healthy</span><span class="green">Mind</span>',
             navHome: "Home",
             mod1Small: "Module 1",
             mod1Title: "Sleep",
@@ -137,31 +137,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función de actualización de idioma
+    // Función de actualización de idioma y persistencia
     function changeLanguage(lang) {
         document.documentElement.lang = lang;
-        document.title = translations[lang].pageTitle;
+        if (translations[lang]) {
+            document.title = translations[lang].pageTitle;
 
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                element.innerHTML = translations[lang][key];
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Sincronizar el estado visual de los botones de forma segura
+            if (btnEs && btnEn) {
+                if (lang === 'es') {
+                    btnEs.classList.add('active');
+                    btnEn.classList.remove('active');
+                } else {
+                    btnEn.classList.add('active');
+                    btnEs.classList.remove('active');
+                }
             }
+
+            // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
+            localStorage.setItem('preferredLang', lang);
+        }
+    }
+
+    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    changeLanguage(savedLang);
+
+    // Eventos del conmutador ES/EN
+    if (btnEs) {
+        btnEs.addEventListener('click', () => {
+            changeLanguage('es');
         });
     }
 
-    // Eventos del conmutador ES/EN
-    btnEs.addEventListener('click', () => {
-        btnEs.classList.add('active');
-        btnEn.classList.remove('active');
-        changeLanguage('es');
-    });
-
-    btnEn.addEventListener('click', () => {
-        btnEn.classList.add('active');
-        btnEs.classList.remove('active');
-        changeLanguage('en');
-    });
+    if (btnEn) {
+        btnEn.addEventListener('click', () => {
+            changeLanguage('en');
+        });
+    }
 });
 
 // Para guardar visita de página en las demás vistas HTML:
