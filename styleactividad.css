@@ -24,8 +24,10 @@ body {
     padding: 15px 40px;
     background-color: #ffffff;
     border-bottom: 1px solid #e1f0ec;
-    position: relative;
-    z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Asegura que el menú quede por encima del contenido al deslizar */
+    width: 100%;
 }
 
 .navbar-left {
@@ -441,8 +443,11 @@ body {
 /* RESPONSIVIDAD Y MENÚ HAMBURGUESA */
 @media (max-width: 992px) {
     .navbar {
-        padding: 15px 20px;
-    }
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Asegura que el menú quede por encima del contenido al deslizar */
+    width: 100%;
+}
 
     .menu-toggle {
         display: block;
@@ -470,6 +475,7 @@ body {
         padding: 20px;
         max-width: 100%;
     }
+    
 }
 
 @media (max-width: 576px) {
@@ -498,4 +504,11 @@ body {
         padding: 10px 18px;
         font-size: 13px;
     }
+
+    .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Asegura que el menú quede por encima del contenido al deslizar */
+    width: 100%;
+}
 }

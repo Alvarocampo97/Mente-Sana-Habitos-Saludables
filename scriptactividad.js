@@ -273,10 +273,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const options = card.querySelectorAll('.option-item');
                 options.forEach(opt => {
                     const input = opt.querySelector('input');
-                    if (input.hasAttribute('data-correct') || input.getAttribute('data-correct') === "true") {
-                        opt.classList.add('correct');
-                    } else if (input.checked) {
-                        opt.classList.add('incorrect');
+                    if (qData.isCorrect) {
+                        if (input.hasAttribute('data-correct') || input.getAttribute('data-correct') === "true") {
+                            opt.classList.add('correct');
+                        }
+                    } else {
+                        if (input.checked) {
+                            opt.classList.add('incorrect');
+                        }
                     }
                 });
 
@@ -343,10 +347,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         options.forEach(opt => {
             const input = opt.querySelector('input');
-            if (input.hasAttribute('data-correct') || input.getAttribute('data-correct') === "true") {
-                opt.classList.add('correct');
-            } else if (input.checked) {
-                opt.classList.add('incorrect');
+            if (isCorrect) {
+                if (input.hasAttribute('data-correct') || input.getAttribute('data-correct') === "true") {
+                    opt.classList.add('correct');
+                }
+            } else {
+                if (input.checked) {
+                    opt.classList.add('incorrect');
+                }
             }
         });
 

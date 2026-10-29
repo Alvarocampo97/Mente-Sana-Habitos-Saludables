@@ -28,7 +28,8 @@ body {
     border-bottom: 1px solid #e1f0ec;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* Asegura que el menú quede por encima del contenido al deslizar */
+    width: 100%;
 }
 
 .navbar-left {

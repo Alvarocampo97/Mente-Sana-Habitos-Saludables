@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                // Si la traducción contiene etiquetas HTML (como spans con colores), usar innerHTML
                 element.innerHTML = translations[lang][key];
             }
         });
@@ -47,24 +46,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroImg) {
             heroImg.alt = translations[lang].imgAlt;
         }
+
+        // Sincronizar el estado visual de los botones
+        if (lang === 'es') {
+            btnEs.classList.add('active');
+            btnEn.classList.remove('active');
+        } else {
+            btnEn.classList.add('active');
+            btnEs.classList.remove('active');
+        }
+
+        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
+        localStorage.setItem('preferredLang', lang);
     }
+
+    // 1. COMPROBAR SI YA HABÍA UN IDIOMA GUARDADO AL CARGAR LA PÁGINA
+    const savedLang = localStorage.getItem('preferredLang') || 'es';
+    changeLanguage(savedLang);
 
     // Eventos de selección de idioma
     btnEs.addEventListener('click', () => {
-        btnEs.classList.add('active');
-        btnEn.classList.remove('active');
         changeLanguage('es');
     });
 
     btnEn.addEventListener('click', () => {
-        btnEn.classList.add('active');
-        btnEs.classList.remove('active');
         changeLanguage('en');
     });
 
-    btnComenzar.addEventListener('click', () => {
-        console.log("Iniciando la experiencia de MenteSana...");
-    });
+    if (btnComenzar) {
+        btnComenzar.addEventListener('click', () => {
+            console.log("Iniciando la experiencia de MenteSana...");
+        });
+    }
 });
 
 // Para guardar visita de página en las demás vistas HTML:
@@ -73,11 +86,4 @@ const currentPage = window.location.pathname.split('/').pop();
 if (currentPage && !visitedPages.includes(currentPage)) {
     visitedPages.push(currentPage);
     localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
-}
-
-// Para guardar una interacción completada (ej. responder una pregunta o dar clic a un botón):
-let completedInteractions = JSON.parse(localStorage.getItem('completedInteractions')) || [];
-if (!completedInteractions.includes('interaction_id')) {
-    completedInteractions.push('interaction_id');
-    localStorage.setItem('completedInteractions', JSON.stringify(completedInteractions));
 }

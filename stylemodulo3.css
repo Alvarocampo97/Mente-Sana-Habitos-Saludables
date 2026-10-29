@@ -26,8 +26,10 @@ body {
     padding: 15px 40px;
     background-color: #ffffff;
     border-bottom: 1px solid #e1f0ec;
-    position: relative;
-    z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Asegura que el menú quede por encima del contenido al deslizar */
+    width: 100%;
 }
 
 .navbar-left {
