@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const btnEs = document.getElementById("btn-es");
+    const btnEn = document.getElementById("btn-en");
+    const heroAudio = document.getElementById("hero-audio");
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebar-overlay");
+    const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
+
     // -------------------------------------------------------------
     // 1. DICCIONARIO DE TRADUCCIONES (i18n)
     // -------------------------------------------------------------
@@ -22,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navCredits: 'Créditos',
             quizTitle: 'Actividad de aprendizaje',
             audioLabel: 'Escuchar descripción en audio',
+            audioSrc: 'Audios/Audio 18.mp3',
             quizIntro: 'Lee cuidadosamente cada pregunta y selecciona una sola respuesta entre las opciones disponibles. Elige la alternativa que consideres correcta según la información presentada en los módulos sobre hábitos saludables.',
             
             // Preguntas
@@ -104,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navCredits: 'Credits',
             quizTitle: 'Learning Activity',
             audioLabel: 'Listen to description in audio',
+            audioSrc: 'Audios/audio-18-en.mp3',
             quizIntro: 'Read each question carefully and select a single answer among the available options. Choose the alternative you consider correct based on the information presented in the healthy habits modules.',
 
             q1Label: 'Question 1:',
@@ -171,14 +181,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------------------------------------------
     // 2. CAMBIO DE IDIOMA E INTERNACIONALIZACIÓN (i18n)
     // -------------------------------------------------------------
-    const btnEs = document.getElementById("btn-es");
-    const btnEn = document.getElementById("btn-en");
-
     function setLanguage(lang) {
         currentLang = lang;
         document.documentElement.lang = lang;
 
-        // ACTUALIZAR EL TÍTULO DE LA PESTAÑA (HEAD)
         if (translations[lang] && translations[lang].pageTitle) {
             document.title = translations[lang].pageTitle;
         }
@@ -196,6 +202,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
+
         for (let i = 1; i <= 7; i++) {
             const feedback = document.getElementById(`feedback-${i}`);
             if (feedback && feedback.style.display !== "none" && feedback.textContent !== "") {
@@ -211,11 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
         localStorage.setItem('preferredLang', lang);
     }
 
-    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
     const savedLang = localStorage.getItem('preferredLang') || 'es';
     setLanguage(savedLang);
 
@@ -225,11 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------------------------------------------
     // 3. RESPONSIVIDAD (MENÚ HAMBURGUESA)
     // -------------------------------------------------------------
-    const menuToggle = document.getElementById("menu-toggle");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebar-overlay");
-    const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
-
     function toggleMenu() {
         if (sidebar && overlay) {
             sidebar.classList.toggle("active");
@@ -379,6 +389,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedback.textContent = translations[currentLang].feedbackCorrect;
                 feedback.className = "feedback-message correct";
                 feedback.removeAttribute("data-reason");
+
+                // Registrar interacción completada en localStorage para la sección de progreso
+                let completedInteractions = JSON.parse(localStorage.getItem('completedInteractions')) || [];
+                if (!completedInteractions.includes(`quiz_q${questionNum}`)) {
+                    completedInteractions.push(`quiz_q${questionNum}`);
+                    localStorage.setItem('completedInteractions', JSON.stringify(completedInteractions));
+                }
             } else {
                 feedback.textContent = translations[currentLang].feedbackIncorrect;
                 feedback.className = "feedback-message incorrect";
@@ -426,3 +443,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadSavedAnswers();
 });
+
+// Para guardar visita de página
+let visitedPages = JSON.parse(localStorage.getItem('visitedPages')) || [];
+const currentPage = window.location.pathname.split('/').pop();
+if (currentPage && !visitedPages.includes(currentPage)) {
+    visitedPages.push(currentPage);
+    localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
+}

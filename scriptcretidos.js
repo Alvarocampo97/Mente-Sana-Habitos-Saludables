@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Funcionalidad del Menú Hamburguesa
     if (menuToggle && sidebar && sidebarOverlay) {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción actualizado con soporte para Créditos
+    // Diccionario de traducción actualizado con soporte para Créditos y Audio dinámico
     const translations = {
         es: {
             pageTitle: "MenteSana - Créditos",
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             creditsSubtitle: "Consulta las fuentes bibliográficas y los recursos multimedia utilizados.",
             refHeader: "Referencias Bibliográficas",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 20.mp3",
             audioFallback: "Tu navegador no soporta la reproducción de audio.",
             btnPrev: "Anterior",
             btnNext: "Siguiente",
@@ -93,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             creditsSubtitle: "Consult the bibliographic sources and multimedia resources used.",
             refHeader: "Bibliographic References",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-20-en.mp3",
             audioFallback: "Your browser does not support audio playback.",
             btnPrev: "Previous",
             btnNext: "Next",
@@ -112,6 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Sincronizar el estado visual de los botones de forma segura
             if (btnEs && btnEn) {
@@ -147,17 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Guardar visita de página
-let visitedPages = JSON.parse(localStorage.getItem('visitedPages')) || [];
+// Guardar visita de página en sessionStorage (consistente con el resto del proyecto)
+let visitedPages = JSON.parse(sessionStorage.getItem('visitedPages')) || [];
 const currentPage = window.location.pathname.split('/').pop();
 if (currentPage && !visitedPages.includes(currentPage)) {
     visitedPages.push(currentPage);
-    localStorage.setItem('visitedPages', JSON.stringify(visitedPages));
-}
-
-// Guardar interacciones completadas
-let completedInteractions = JSON.parse(localStorage.getItem('completedInteractions')) || [];
-if (!completedInteractions.includes('interaction_id')) {
-    completedInteractions.push('interaction_id');
-    localStorage.setItem('completedInteractions', JSON.stringify(completedInteractions));
+    sessionStorage.setItem('visitedPages', JSON.stringify(visitedPages));
 }

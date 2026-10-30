@@ -4,15 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('reset-btn');
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
+    const heroAudio = document.getElementById('hero-audio');
+    const overlay = document.getElementById('sidebar-overlay');
 
     if (menuToggle && sidebar) {
         menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('active');
+            if (overlay) overlay.classList.toggle('active');
         });
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
 
         document.addEventListener('click', (e) => {
             if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
             }
         });
     }
@@ -44,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLang = 'es';
 
     function updateProgressUI() {
-        // Se mantiene la lectura de visitedPages desde sessionStorage tal como lo maneja tu lógica original
         const visitedPages = JSON.parse(sessionStorage.getItem('visitedPages')) || [];
 
         const pagesCount = Math.min(visitedPages.length, TOTAL_PAGES);
@@ -87,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.removeItem('visitedPages');
                 sessionStorage.removeItem('quizAnswersState');
                 
-                // Vuelve a registrar la página actual de progreso
                 let visitedPages = ['progreso.html'];
                 sessionStorage.setItem('visitedPages', JSON.stringify(visitedPages));
                 updateProgressUI();
@@ -114,8 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
             navProgress: "Mi progreso",
             navCredits: "Créditos",
             welcomeTitle: "Mi progreso",
-            welcomeSubtitle: "Este es el resumen de lo que haz logrado alcanzar durante todo el recorrido de este recurso educativo.",
+            welcomeSubtitle: "Este es el resumen de lo que has logrado alcanzar durante todo el recorrido de este recurso educativo.",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 19.mp3",
             pagesProgressTitle: "Progreso de navegación",
             btnReset: "Reiniciar mi progreso",
             pagesSummaryTitle: "Resumen de Navegación",
@@ -142,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             welcomeTitle: "My Progress",
             welcomeSubtitle: "This is a summary of what you have achieved throughout this educational resource.",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-19-en.mp3",
             pagesProgressTitle: "Navigation Progress",
             btnReset: "Reset my progress",
             pagesSummaryTitle: "Navigation Summary",
@@ -162,7 +173,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Sincronizar el estado visual de los botones de forma segura
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
+
         if (btnEs && btnEn) {
             if (lang === 'es') {
                 btnEs.classList.add('active');
@@ -173,13 +194,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // GUARDAR LA PREFERENCIA EN LOCALSTORAGE
         localStorage.setItem('preferredLang', lang);
 
         updateProgressUI();
     }
 
-    // 1. CARGAR IDIOMA PREVIAMENTE SELECCIONADO AL INICIAR ESTA SECCIÓN
     const savedLang = localStorage.getItem('preferredLang') || 'es';
     changeLanguage(savedLang);
 

@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
     const btnComenzar = document.getElementById('btn-comenzar');
+    const heroAudio = document.getElementById('hero-audio');
 
-    // Diccionario de traducciones
+    // Diccionario de traducciones (respetando los nombres exactos de tus archivos)
     const translations = {
         es: {
             pageTitle: "MenteSana - Hábitos Saludables",
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: "Explora, aprende y pon en práctica hábitos que mejoran tu bienestar físico, mental, académico y digital.",
             btnComenzar: "Comenzar",
             audioLabel: "Escuchar descripción en audio",
-            imgAlt: "Estudiante universitaria trabajando en laptop"
+            imgAlt: "Estudiante universitaria trabajando en laptop",
+            audioSrc: "Audios/Audio 1.mp3"
         },
         en: {
             pageTitle: "HealthyMind - Healthy Habits",
@@ -24,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             description: "Explore, learn, and practice habits that improve your physical, mental, academic, and digital well-being.",
             btnComenzar: "Get Started",
             audioLabel: "Listen to audio description",
-            imgAlt: "University student working on laptop"
+            imgAlt: "University student working on laptop",
+            audioSrc: "Audios/audio-1-en.mp3"
         }
     };
 
@@ -47,7 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
             heroImg.alt = translations[lang].imgAlt;
         }
 
-        // Sincronizar el estado visual de los botones (si existen en esta sección)
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused; // Detecta si el usuario lo estaba reproduciendo
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load(); // Carga el nuevo archivo de audio
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
+
+        // Sincronizar el estado visual de los botones de idioma
         if (btnEs && btnEn) {
             if (lang === 'es') {
                 btnEs.classList.add('active');
@@ -62,12 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLang', lang);
     }
 
-    // APLICAR IDIOMA GUARDADO AL CARGAR CADA SECCIÓN
-    // Si no hay nada guardado, por defecto toma 'es'
+    // APLICAR IDIOMA GUARDADO AL CARGAR LA PÁGINA
     const savedLang = localStorage.getItem('preferredLang') || 'es';
     changeLanguage(savedLang);
 
-    // Eventos de selección de idioma (validando que los botones existan en la vista actual)
+    // Eventos de selección de idioma
     if (btnEs) {
         btnEs.addEventListener('click', () => {
             changeLanguage('es');

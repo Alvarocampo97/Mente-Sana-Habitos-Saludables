@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Lógica para desplegar / cerrar el menú hamburguesa
     if (menuToggle && sidebar && sidebarOverlay) {
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para el Módulo 4
+    // Diccionario de traducción para el Módulo 4 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - Módulo 4: Bienestar emocional",
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Módulo 4",
             bannerModTitle: "Bienestar emocional",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 12.mp3",
             sub1Title: "Técnicas para manejar el estrés",
             sub1Desc: "Aprende técnicas que te ayudarán a manejar el estrés.",
             sub2Title: "Estrategias para gestionar el estrés académico",
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Module 4",
             bannerModTitle: "Emotional Well-being",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-12-en.mp3",
             sub1Title: "Techniques for Managing Stress",
             sub1Desc: "Learn techniques that will help you manage stress.",
             sub2Title: "Strategies for Managing Academic Stress",
@@ -88,6 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Actualizar clases visuales de los botones de forma segura
             if (btnEs && btnEn) {

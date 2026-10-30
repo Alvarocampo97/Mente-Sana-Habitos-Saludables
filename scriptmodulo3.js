@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Elementos del menú hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebarOverlay.addEventListener('click', toggleMenu);
     }
 
-    // Diccionario de traducción para el Módulo 3
+    // Diccionario de traducción para el Módulo 3 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - Módulo 3: Alimentación",
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Módulo 3",
             bannerModTitle: "Alimentación",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 9.mp3",
             sub1Title: "Principios básicos de una alimentación saludable",
             sub1Desc: "Aprende a nutrir tu cuerpo de manera balanceada para mejorar la concentración y la salud general.",
             sub2Title: "Opciones saludables para los estudiantes universitarios",
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Module 3",
             bannerModTitle: "Nutrition",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-9-en.mp3",
             sub1Title: "Basic principles of healthy eating",
             sub1Desc: "Learn to nourish your body in a balanced way to improve focus and overall health.",
             sub2Title: "Healthy options for college students",
@@ -92,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

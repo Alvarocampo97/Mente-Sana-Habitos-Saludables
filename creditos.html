@@ -109,9 +109,8 @@
                         <i class="fa-solid fa-volume-high audio-icon"></i>
                         <span data-i18n="audioLabel">Escuchar descripción en audio</span>
                     </div>
-                    <audio id="hero-audio" controls preload="metadata">
-                        <source src="Audios/Audio 20.mp3" type="audio/mp3">
-                        Tu navegador no soporta la reproducción de audio.
+                    <audio id="hero-audio" controls preload="metadata" src="Audios/Audio 20.mp3">
+                        <span data-i18n="audioFallback">Tu navegador no soporta la reproducción de audio.</span>
                     </audio>
                 </div>
             </div>
@@ -199,6 +198,7 @@
 
     </div>
 
+    <!-- Nota: se corrigió el nombre del script para que coincida con scriptcreditos.js -->
     <script src="scriptcretidos.js"></script>
     <script src="global-tracker.js"></script>
 </body>

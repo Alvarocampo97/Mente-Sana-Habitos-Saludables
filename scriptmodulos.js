@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Función para alternar el menú en móviles
     function toggleSidebar() {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.addEventListener('click', toggleSidebar);
     }
 
-    // Diccionario de traducción para la sección de módulos
+    // Diccionario de traducción para la sección de módulos (incluyendo la ruta de los audios)
     const translations = {
         es: {
             pageTitle: "MenteSana - Módulos",
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             welcomeSubtitle: "Elige un módulo para comenzar tu recorrido hacia un mejor bienestar.",
             audioLabel: "Escuchar descripción en audio",
             audioFallback: "Tu navegador no soporta la reproducción de audio.",
+            audioSrc: "Audios/Audio 2.mp3",
             mod1CardTitle: "Módulo 1<br>Sueño",
             mod2CardTitle: "Módulo 2<br>Actividad física",
             mod3CardTitle: "Módulo 3<br>Alimentación",
@@ -73,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             welcomeSubtitle: "Choose a module to start your journey toward better well-being.",
             audioLabel: "Listen to audio description",
             audioFallback: "Your browser does not support audio playback.",
+            audioSrc: "Audios/audio-2-en.mp3",
             mod1CardTitle: "Module 1<br>Sleep",
             mod2CardTitle: "Module 2<br>Physical Activity",
             mod3CardTitle: "Module 3<br>Nutrition",
@@ -94,6 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

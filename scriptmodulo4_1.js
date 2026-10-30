@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
     
     // Elementos para el Menú Hamburguesa en Móviles
     const menuToggle = document.getElementById('menu-toggle');
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para la sección 4.1
+    // Diccionario de traducción para la sección 4.1 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 4.1 Técnicas para manejar el estrés",
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "4.1 Técnicas para manejar el estrés",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 13.mp3",
             mainDesc: "El estrés es una respuesta natural del cuerpo, pero aprender a gestionarlo adecuadamente es clave para mantener tu salud mental y rendimiento académico.",
             videoQuote: '<i>"Tómate un momento para respirar, hacer una pausa y recalibrar tu mente."</i>',
             btnPrev: "Anterior",
@@ -73,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "4.1 Techniques for managing stress",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-13-en.mp3",
             mainDesc: "Stress is a natural body response, but learning to manage it properly is key to maintaining your mental health and academic performance.",
             videoQuote: '<i>"Take a moment to breathe, pause, and recalibrate your mind."</i>',
             btnPrev: "Previous",
@@ -92,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Sincronizar el estado visual de los botones de forma segura
             if (btnEs && btnEn) {

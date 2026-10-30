@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Elementos del Menú Hamburguesa
     const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para el Módulo 5
+    // Diccionario de traducción para el Módulo 5 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - Módulo 5: Hábitos digitales",
@@ -51,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Módulo 5",
             bannerModTitle: "Hábitos digitales",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 15.mp3",
             sub1Title: "Gestión del tiempo frente a pantallas",
             sub1Desc: "Aprende a gestionar el tiempo frente a la pantalla de una manera adecuada.",
             sub2Title: "Construcción de una rutina saludable",
@@ -78,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Module 5",
             bannerModTitle: "Digital Habits",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-15-en.mp3",
             sub1Title: "Screen Time Management",
             sub1Desc: "Learn how to manage screen time in an appropriate way.",
             sub2Title: "Building a Healthy Routine",
@@ -99,6 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Sincronizar el estado visual de los botones de forma segura
             if (btnEs && btnEn) {

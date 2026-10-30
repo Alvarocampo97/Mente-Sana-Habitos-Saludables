@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Función para alternar el menú
     function toggleMenu() {
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Diccionario de traducción para la sección 2.2
+    // Diccionario de traducción para la sección 2.2 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 2.2 Estrategias para mantenerse activo durante la jornada académica.",
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "2.2 Hábitos de Actividad Física Recomendados",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 8.mp3",
             cardHint: "Haz clic para ver más",
             card1Tag: "Estrategia 1",
             card1Front: "Planificar la actividad física.",
@@ -105,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "2.2 Recommended Physical Activity Habits",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-8-en.mp3",
             cardHint: "Click to see more",
             card1Tag: "Strategy 1",
             card1Front: "Plan physical activity.",
@@ -143,6 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

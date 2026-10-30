@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Función para abrir el menú lateral
     function openMenu() {
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para el Módulo 1
+    // Diccionario de traducción para el Módulo 1 (incluyendo las rutas de los audios)
     const translations = {
         es: {
             pageTitle: "MenteSana - Módulo 1: Sueño",
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Módulo 1",
             bannerModTitle: "Sueño",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 3.mp3",
             sub1Title: "Importancia del descanso",
             sub1Desc: "El sueño es esencial para la memoria, el aprendizaje, el estado de ánimo y la salud física y mental.",
             sub2Title: "Rutina de sueño saludable",
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Module 1",
             bannerModTitle: "Sleep",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-3-en.mp3",
             sub1Title: "Importance of Rest",
             sub1Desc: "Sleep is essential for memory, learning, mood, and physical and mental health.",
             sub2Title: "Healthy Sleep Routine",
@@ -108,6 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

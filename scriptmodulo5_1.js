@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Lógica para desplegar / cerrar el menú hamburguesa
     if (menuToggle && sidebar && sidebarOverlay) {
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para la sección 5.1
+    // Diccionario de traducción para la sección 5.1 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 5.1 Gestión del tiempo frente a pantallas",
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "5.1 Gestión del tiempo frente a pantallas",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 16.mp3",
             mainDesc: "El uso de pantallas forma parte de la vida académica y personal de los estudiantes universitarios. Sin embargo, pasar largos períodos frente a dispositivos y permanecer sentado durante mucho tiempo puede favorecer hábitos sedentarios. Por ello, es importante aprender a gestionar el tiempo de pantalla, realizar pausas y construir rutinas que integren estudio, descanso y movimiento (Castro et al., 2020).",
             benefitsTitle: "Estrategias para gestionar el tiempo de pantalla",
             ben1: "Organiza tus períodos de estudio.",
@@ -68,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "5.1 Screen Time Management",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-16-en.mp3",
             mainDesc: "Screen use is a part of the academic and personal lives of university students. However, spending long periods in front of devices and sitting for extended periods can promote sedentary habits. Therefore, it is important to learn how to manage screen time, take breaks, and build routines that integrate study, rest, and movement (Castro et al., 2020).",
             benefitsTitle: "Screen Time Management Strategies",
             ben1: "Organize your study periods.",
@@ -92,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Sincronizar el estado visual de los botones de forma segura
             if (btnEs && btnEn) {

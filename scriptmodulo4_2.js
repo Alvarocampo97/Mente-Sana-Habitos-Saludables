@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnEn = document.getElementById('btn-en');
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const sidebar = document.getElementById('sidebar');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Control del menú hamburguesa para móviles
     if (hamburgerBtn && sidebar) {
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para la sección 4.2
+    // Diccionario de traducción para la sección 4.2 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 4.2 Estrategias para gestionar el estrés académico",
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "4.2 Estrategias para gestionar el estrés académico",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 14.mp3",
             mainDesc: "El estrés académico es una respuesta que puede aparecer cuando las demandas de la vida universitaria son percibidas como difíciles de afrontar. Las evaluaciones, trabajos, responsabilidades y organización del tiempo pueden generar tensión en los estudiantes (Valdivieso-León et al., 2020).",
             rememberText: "<strong>Ten en cuenta:</strong> Desarrollar estrategias de afrontamiento permite responder de manera más adecuada a estas situaciones y favorecer tu bienestar durante la etapa universitaria.",
             benefitsTitle: "Estrategias recomendadas",
@@ -78,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "4.2 Strategies for Managing Academic Stress",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-14-en.mp3",
             mainDesc: "Academic stress is a response that can appear when the demands of university life are perceived as difficult to cope with. Exams, assignments, responsibilities, and time management can create tension for students (Valdivieso-León et al., 2020).",
             rememberText: "<strong>Keep in mind:</strong> Developing coping strategies allows you to respond more appropriately to these situations and promote your well-being during university life.",
             benefitsTitle: "Recommended Strategies",
@@ -112,6 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Sincronizar el estado visual de los botones de forma segura
             if (btnEs && btnEn) {

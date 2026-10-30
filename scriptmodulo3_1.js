@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Función para alternar la visibilidad del menú en móvil
     function toggleMenu() {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
 
-    // Diccionario de traducción para la sección 3.1
+    // Diccionario de traducción para la sección 3.1 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 3.1 Principios básicos de una alimentación saludable",
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "3.1 Principios básicos de una alimentación saludable",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 10.mp3",
             mainDesc: "Una alimentación saludable aporta los nutrientes y la energía que el cuerpo necesita para funcionar adecuadamente y ayuda a prevenir enfermedades (Calañas-Continente & Bellido, 2006).",
             rememberText: "<strong>Recuerda:</strong> Comer saludable no significa eliminar alimentos, sino aprender a elegir y combinar mejor.",
             benefitsTitle: "Principios clave",
@@ -81,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "3.1 Basic Principles of Healthy Eating",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-10-en.mp3",
             mainDesc: "Healthy eating provides the nutrients and energy the body needs to function properly and helps prevent diseases (Calañas-Continente & Bellido, 2006).",
             rememberText: "<strong>Remember:</strong> Eating healthy doesn't mean eliminating foods, but learning to choose and combine them better.",
             benefitsTitle: "Key Principles",
@@ -112,6 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

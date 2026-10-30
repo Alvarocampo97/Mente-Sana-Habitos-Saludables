@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Lógica para el menú hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Diccionario de traducción para la sección 1.2
+    // Diccionario de traducción para la sección 1.2 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 1.2 Hábitos de sueño recomendados",
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "1.2 Rutina de Sueño Saludable",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 5.mp3",
             cardHint: "Haz clic para ver más",
             card1Tag: "Hábito saludable",
             card1Front: "Cuida las siestas.",
@@ -91,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "1.2 Healthy Sleep Routine",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-5-en.mp3",
             cardHint: "Click to see more",
             card1Tag: "Healthy Habit",
             card1Front: "Mind your naps.",
@@ -120,6 +123,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

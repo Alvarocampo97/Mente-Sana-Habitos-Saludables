@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
     
     // Elementos del menú hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para la sección 3.2
+    // Diccionario de traducción para la sección 3.2 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 3.2 Opciones saludables para los estudiantes universitarios",
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "3.2 Opciones saludables para los estudiantes universitarios",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 11.mp3",
             mainDesc: "La vida universitaria puede traer poco tiempo, horarios cambiantes y comidas fuera de casa. ¡Pequeñas decisiones pueden marcar la diferencia!",
             benefitsTitle: "🎒 ¿Qué puedes elegir?",
             p1Title: "Para la merienda",
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "3.2 Healthy choices for college students",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-11-en.mp3",
             mainDesc: "College life can bring little time, changing schedules, and eating out. Small decisions can make a difference!",
             benefitsTitle: "🎒 What can you choose?",
             p1Title: "For snacks",
@@ -107,6 +110,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

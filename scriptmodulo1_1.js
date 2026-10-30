@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
     
     // Lógica para el menú hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Diccionario de traducción para la sección 1.1
+    // Diccionario de traducción para la sección 1.1 (incluyendo las rutas de los audios)
     const translations = {
         es: {
             pageTitle: "MenteSana - 1.1 Importancia del descanso",
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "1.1 Importancia del descanso",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 4.mp3",
             mainDesc: " El sueño no es un momento de inactividad ni una pérdida de tiempo, es un proceso fundamental para el funcionamiento del organismo y para el bienestar físico y emocional. Durante el sueño se desarrollan procesos esenciales del sistema nervioso y se alternan diferentes fases que contribuyen al adecuado funcionamiento cerebral. (Panseits, 2023). ", 
             omsText: "Según Panseits (2023) dormir bien renueva tus conexiones cerebrales y activa funciones clave que impactan directamente en tu capacidad para concentrarte, tu salud física y tu estado de ánimo.",
             benefitsTitle: "Beneficios de un buen descanso",
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "1.1 Importance of Rest",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-4-en.mp3",
             mainDesc: "Sleep is not a period of inactivity or a waste of time; it is a fundamental process for the proper functioning of the body and for physical and emotional well-being. During sleep, essential processes of the nervous system take place, and different stages alternate, contributing to proper brain function (Panseits, 2023).",
             omsText: "According to Panseits (2023), getting enough sleep renews your brain connections and activates key functions that directly impact your ability to concentrate, your physical health, and your mood.",
             benefitsTitle: "Benefits of Good Rest",
@@ -92,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

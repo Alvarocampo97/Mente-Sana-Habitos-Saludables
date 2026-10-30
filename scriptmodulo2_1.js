@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Lógica para desplegar / ocultar el menú lateral (Hamburguesa)
     function toggleMenu() {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', closeMenu);
     });
 
-    // Diccionario de traducción para la sección 2.1
+    // Diccionario de traducción para la sección 2.1 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 2.1 Beneficios de la actividad física",
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "2.1 Beneficios de la actividad física",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 7.mp3",
             mainDesc: "La actividad física regular contribuye al cuidado de la salud, mejora la condición física y favorece una composición corporal saludable. En los estudiantes universitarios también puede aportar beneficios psicológicos y sociales, además de favorecer el bienestar general y una mayor conciencia sobre los propios hábitos de salud (Galmes-Panades & Vidal-Conti, 2020; Perea-Caballero et al., 2019).",
             omsText: "Mantenerse activo no significa solamente realizar ejercicio; también es importante reducir el tiempo que permanecemos sentados durante el día. Por ello, combinar la práctica de actividad física con pausas y movimiento durante las jornadas académicas puede contribuir a disminuir los efectos asociados al sedentarismo (Perea-Caballero et al., 2019).",
             btnPrev: "Anterior",
@@ -62,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             pageTitle: "HealthyMind - 2.1 Benefits of Physical Activity",
-            logoText: '<span class="blue">Mente</span><span class="green">Sana</span>',
             logoText: '<span class="blue">Healthy</span><span class="green">Mind</span>',
             navHome: "Home",
             mod1Small: "Module 1",
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "2.1 Benefits of Physical Activity",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-7-en.mp3",
             mainDesc: "Regular physical activity contributes to health care, improves physical fitness, and promotes a healthy body composition. In university students, it can also provide psychological and social benefits, in addition to promoting overall well-being and greater awareness of one's own health habits (Galmes-Panades & Vidal-Conti, 2020; Perea-Caballero et al., 2019).",
             omsText: "Staying active does not only mean exercising; it is also important to reduce the amount of time spent sitting during the day. Therefore, combining physical activity with movement breaks during academic days can help reduce the effects associated with a sedentary lifestyle (Perea-Caballero et al., 2019).",
             btnPrev: "Previous",
@@ -98,6 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

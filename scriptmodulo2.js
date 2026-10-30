@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Función para alternar el menú
     function toggleMenu() {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
 
-    // Diccionario de traducción para el Módulo 2
+    // Diccionario de traducción para el Módulo 2 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - Módulo 2: Actividad física",
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Módulo 2",
             bannerModTitle: "Actividad física",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 6.mp3",
             sub1Title: "Beneficios de la actividad física",
             sub1Desc: "La actividad física regular contribuye al cuidado de la salud, mejora la condición física y favorece una composición corporal saludable.",
             sub2Title: "Estrategias para mantenerse activo durante la jornada académica",
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bannerModNum: "Module 2",
             bannerModTitle: "Physical Activity",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-6-en.mp3",
             sub1Title: "Benefits of Physical Activity",
             sub1Desc: "Regular physical activity contributes to health care, improves physical fitness, and promotes a healthy body composition.",
             sub2Title: "Strategies to Stay Active During the Academic Day",
@@ -92,6 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key];
             }
         });
+
+        // Actualizar la fuente del audio dinámicamente según el idioma
+        if (heroAudio && translations[lang].audioSrc) {
+            const wasPlaying = !heroAudio.paused;
+            heroAudio.src = translations[lang].audioSrc;
+            heroAudio.load();
+            
+            if (wasPlaying) {
+                heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+            }
+        }
 
         // Sincronizar el estado visual de los botones
         if (btnEs && btnEn) {

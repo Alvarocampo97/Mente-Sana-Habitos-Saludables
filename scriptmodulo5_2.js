@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
+    const heroAudio = document.getElementById('hero-audio');
 
     // Elementos para el Menú Hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Diccionario de traducción para la sección 5.2
+    // Diccionario de traducción para la sección 5.2 (incluyendo rutas de audio)
     const translations = {
         es: {
             pageTitle: "MenteSana - 5.2 Construcción de una rutina saludable",
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Créditos",
             lessonTitle: "5.2 Construcción de una rutina saludable",
             audioLabel: "Escuchar descripción en audio",
+            audioSrc: "Audios/Audio 17.mp3",
             introText: "Una rutina saludable permite equilibrar el estudio, el uso de dispositivos, el descanso y la actividad física. No se trata de eliminar las pantallas, sino de utilizarlas de manera consciente y acompañarlas de buenos hábitos.",
             cardHint: "Haz clic para ver más",
             card1Tag: "Estrategia 1",
@@ -109,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCredits: "Credits",
             lessonTitle: "5.2 Building a Healthy Routine",
             audioLabel: "Listen to audio description",
+            audioSrc: "Audios/audio-17-en.mp3",
             introText: "A healthy routine balances study, screen time, rest, and physical activity. It's not about eliminating screens, but using them mindfully alongside good habits.",
             cardHint: "Click to see more",
             card1Tag: "Strategy 1",
@@ -149,6 +152,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            // Actualizar la fuente del audio dinámicamente según el idioma
+            if (heroAudio && translations[lang].audioSrc) {
+                const wasPlaying = !heroAudio.paused;
+                heroAudio.src = translations[lang].audioSrc;
+                heroAudio.load();
+                
+                if (wasPlaying) {
+                    heroAudio.play().catch(error => console.log("Autoplay bloqueado por el navegador:", error));
+                }
+            }
 
             // Sincronizar el estado visual de los botones de forma segura
             if (btnEs && btnEn) {
